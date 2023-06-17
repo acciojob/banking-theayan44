@@ -33,16 +33,19 @@ public class SavingsAccount extends BankAccount{
         // 2. "Insufficient Balance" : If the amount exceeds balance
         if(amount > maxWithdrawalLimit)
             throw new RuntimeException("Maximum Withdraw Limit Exceed");
-        double currBalance = getBalance();
-        if(amount > currBalance)
-            throw new RuntimeException("Insufficient Balance");
-        setBalance(currBalance - amount);
+        else{
+            double currBalance = getBalance();
+            if(amount > currBalance)
+                throw new RuntimeException("Insufficient Balance");
+            else
+                setBalance(currBalance - amount);
+        }
     }
 
     public double getSimpleInterest(int years){
         // Return the final amount considering that bank gives simple interest on current amount
         double p = getBalance();
-        double amount = ((p * rate * years) / 100);
+        double amount = p + ((p * rate * years) / 100);
         return amount;
     }
 
